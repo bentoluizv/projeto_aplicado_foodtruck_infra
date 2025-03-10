@@ -16,7 +16,7 @@ resource "docker_container" "backend" {
   name        = "backend"
   image       = docker_image.backend.image_id
   working_dir = "/projeto_aplicado"
-  command     = ["fastapi", "run", "app.py", "--host", "0.0.0.0"]
+  command     = ["fastapi", "run", "app.py", "--host", "0.0.0.0", ]
   ports {
     internal = 8000
     external = 8000
@@ -31,13 +31,6 @@ resource "docker_container" "backend" {
   ]
   networks_advanced {
     name = var.network_id
-  }
-
-  healthcheck {
-    test     = ["CMD", "curl", "-f", "http://localhost:8000"]
-    interval = "30s"
-    timeout  = "10s"
-    retries  = 5
   }
 
   restart = "always"
