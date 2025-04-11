@@ -8,7 +8,7 @@ terraform {
 }
 
 resource "docker_image" "cache" {
-  name         = "redis:7.4.2"
+  name         = "redis:latest"
   keep_locally = false
 }
 
